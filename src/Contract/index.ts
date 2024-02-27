@@ -1,4 +1,4 @@
-import { GasInfo, RefreshConfig, formatBalance, getContractErrorMsg } from '@/Common';
+import { RefreshConfig, getContractErrorMsg } from '@/Common';
 import {useQuery,useMutation} from '@tanstack/react-query'
 import { ContractInterface, TEST_CONTRACT, ZNBPleiadePlan_CONTRACT } from '@/Contract/addresses';
 import { useAccount, useChainId, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
@@ -6,7 +6,6 @@ import { useWeb3Modal } from '@web3modal/wagmi/react'
 import { TransLoadingConfirm, TransLoadingError, TransLoadingPending, TransLoadingSuccess } from '@/Components/TransactionLoading';
 import { publicClient } from '@/provider/Web3ModalProvider';
 import TestContact_ABI from '@/ABI/TestContact.json'
-import { Abi, parseAbi, parseUnits } from 'viem';
 import dayjs from 'dayjs';
 import { useEffect, useRef } from 'react';
 
@@ -28,8 +27,10 @@ export function useSendTransaction() {
   const successFun = useRef<any>()
   const errorFun = useRef<any>()
 
-  const {writeContract,writeContractAsync,data:hash,error,isError} = useWriteContract()
-  const {isLoading,isPending,isSuccess,isError:waitIsError,data:waitData,error:waitError} = useWaitForTransactionReceipt({hash})
+  const {writeContract,data:hash,error,isError} = useWriteContract()
+  const {isLoading,isSuccess,isError:waitIsError,error:waitError} = useWaitForTransactionReceipt({
+    hash
+  })
 
   useEffect(()=>{
     if (isError){
@@ -43,7 +44,7 @@ export function useSendTransaction() {
     if (waitIsError){
       TransLoadingError(getContractErrorMsg(waitError),hash || '',chainID)
       errorFun.current && errorFun.current(waitError)
-      console.log('waitError===',waitError)
+      console.log('waitError===',waitError,hash)
     }
   },[waitIsError])
 
@@ -58,7 +59,6 @@ export function useSendTransaction() {
       TransLoadingSuccess(hash || '', chainID)
       successFun.current && successFun.current(hash)
       console.log('isSuccess===',hash)
-
     }
   },[isSuccess])
 
@@ -101,25 +101,25 @@ export function useMutilCallTest(){
       contracts:[
         {
           address:TEST_CONTRACT.addresses[chainId],
-          abi:TestContact_ABI as Abi,
+          abi:TestContact_ABI,
           functionName:'dayID',
           args:[]
         },
         {
           address:TEST_CONTRACT.addresses[chainId],
-          abi:TestContact_ABI as Abi,
+          abi:TestContact_ABI,
           functionName:'balance',
           args:[address]
         },
         {
           address:TEST_CONTRACT.addresses[chainId],
-          abi:TestContact_ABI as Abi,
+          abi:TestContact_ABI,
           functionName:'income',
           args:[address]
         },
         {
           address:TEST_CONTRACT.addresses[chainId],
-          abi:TestContact_ABI as Abi,
+          abi:TestContact_ABI,
           functionName:'getAPrice',
           args:[]
         },

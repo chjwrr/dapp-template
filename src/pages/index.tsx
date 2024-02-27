@@ -5,8 +5,10 @@ import { useAccount, useChainId } from 'wagmi'
 import { TEST_TOKEN, USDT_TOKEN, ZNBPleiadePlan_CONTRACT } from '@/Contract/addresses'
 import { parseUnits } from 'viem'
 import { useApprove, useWalletInfo } from '@/hooks/useTokenContract'
-import { ApprovalState } from '@/Common'
+import { ApprovalState, formatAccount } from '@/Common'
 import { TransLoadingConfirm, TransLoadingError, TransLoadingPending, TransLoadingSuccess } from '@/Components/TransactionLoading'
+import { changeThem } from '@/Redux/setting'
+import { useDispatch } from 'react-redux'
 export default function HomePage() {
   const { open, close } = useWeb3Modal()
   const {address} = useAccount()
@@ -49,8 +51,8 @@ export default function HomePage() {
   return (
     <div>
       <h2 style={{color:'#000'}}>Yay! Welcome to umi!</h2>
-      <button onClick={onClick}>{address || '链接钱包'}</button>
-      <button onClick={onMint}>调用合约方法</button>
+      <button className='button' onClick={onClick}>{address || '链接钱包'}</button>
+      <button className='button' onClick={onMint}>调用合约方法</button>
 
     </div>
   );

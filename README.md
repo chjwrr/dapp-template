@@ -1,7 +1,19 @@
 `yarn add @apollo/client @emailjs/browser @multiavatar/multiavatar @reduxjs/toolkit @sentry/browser @types/lodash lodash @types/numeral numeral @types/react-lottie react-lottie animate.css bignumber.js copy-to-clipboard dayjs echarts events framer-motion graphql language-translate  react-countdown react-device-detect rc-texty rc-tween-one react-fast-marquee react-height react-loader-spinner react-photo-view react-redux react-reveal react-spring react-toastify react-use redux-persist swiper use-media @web3modal/wagmi wagmi viem @tanstack/react-query`
 
 
+# 项目中使用的色值
+所有颜色定义在 `@/Common/colors.less`中
+```
+@secondColor:blue;
+```
 
+其他地方使用在 `.less`中引入
+```
+@import '@/Common/colors.less';
+.button {
+  background: @secondColor;
+}
+```
 
 # 加载SVG
 ```

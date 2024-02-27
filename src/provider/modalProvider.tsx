@@ -51,7 +51,6 @@ const ContentView = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     height: 100%;
-    justify-content:flex-end;
     align-items:center;
     display: flex;
     flex-direction: column;
@@ -76,10 +75,6 @@ const ModalView = styled.div`
   display:flex;
   flex-direction:column;
   @media (max-width: 768px) {
-    padding-left:0px;
-    padding-top:0px;
-    justify-content:flex-end;
-    align-items:center;
   };
   justify-content:center;
   align-items:center;
