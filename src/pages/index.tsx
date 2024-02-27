@@ -6,6 +6,7 @@ import { TEST_TOKEN, USDT_TOKEN, ZNBPleiadePlan_CONTRACT } from '@/Contract/addr
 import { parseUnits } from 'viem'
 import { useApprove, useWalletInfo } from '@/hooks/useTokenContract'
 import { ApprovalState } from '@/Common'
+import { TransLoadingConfirm, TransLoadingError, TransLoadingPending, TransLoadingSuccess } from '@/Components/TransactionLoading'
 export default function HomePage() {
   const { open, close } = useWeb3Modal()
   const {address} = useAccount()
@@ -25,6 +26,7 @@ export default function HomePage() {
     console.log('approve success！！')
   }
   async function onMint(){
+
     if (approveStatus != ApprovalState.APPROVED){
       approve && approve()
       return
