@@ -1,113 +1,60 @@
 import {
-  ButtonView,
-  LoadingView,
-  LoadingIcon,
-  ButtonScale,
-  ButtonOpacity,
-  LoadingViewLine,
-  LoadingViewLineLeft,
-  LoadingViewLineRight,
-  ButtonRotate,
   LoadingRotateView,
   LoadingRotateViewItem1,
   LoadingRotateViewItem2,
   LoadingRotateViewItem3,
   LoadingRotateViewItem4
 } from "./styles";
-import React from 'react'
-import LoadingSVG from '@/assets/svg/Loading.svg'
+import './index.less'
+import Lottie from 'react-lottie';
+// https://lottiefiles.com/free-animations/loading
+import LoadingJson from '@/assets/lottlie/loading.json'
 
-interface buttonType{
-  children:React.ReactNode,
-  loading?:boolean,
-  disable?:boolean,
-  style?:Object,
-  onClick?:any
-}
 
-export default function LoadingButton({
-  children,
-  loading=false,
-  disable=false,
-  style,
-  onClick,
-}:buttonType){
-  return <ButtonView style={style} disable={Number(disable)} onClick={()=>{
-    if (!loading && !disable){
-      onClick && onClick()
-    }
+export function LoadingButtonIcon({position=false}:{position?:boolean}){
+  return <LoadingRotateView style={{
+    position:position ? 'absolute' : 'relative'
   }}>
-    {children}
-    {loading && <LoadingView>
-      <LoadingIcon src={LoadingSVG}/>
-    </LoadingView>}
-  </ButtonView>
-}
-export function LoadingButtonScale({
-  children,
-  loading=false,
-  disable=false,
-  style,
-  onClick,
-}:buttonType){
-  return <ButtonScale loading={loading?1:0} style={style} disable={Number(disable)} onClick={()=>{
-    if (!loading && !disable){
-      onClick && onClick()
-    }
-  }}>
-    {children}
-  </ButtonScale>
-}
-
-export function LoadingButtonOpacity({
-  children,
-  loading=false,
-  disable=false,
-  style,
-  onClick,
-}:buttonType){
-  return <ButtonOpacity loading={loading?1:0} style={style} disable={Number(disable)} onClick={()=>{
-    if (!loading && !disable){
-      onClick && onClick()
-    }
-  }}>
-    {children}
-    {loading && <LoadingView>
-      <LoadingViewLineLeft/>
-      <LoadingViewLine/>
-      <LoadingViewLineRight/>
-    </LoadingView>}
-  </ButtonOpacity>
-}
-
-export function LoadingButtonRotate({
-  children,
-  loading=false,
-  disable=false,
-  style,
-  onClick,
-}:buttonType){
-  return <ButtonRotate loading={loading?1:0} style={style} disable={Number(disable)} onClick={()=>{
-    if (!loading && !disable){
-      onClick && onClick()
-    }
-  }}>
-    {children}
-    {loading && <LoadingView>
-        <LoadingRotateView>
-        <LoadingRotateViewItem1/>
-        <LoadingRotateViewItem2/>
-        <LoadingRotateViewItem3/>
-        <LoadingRotateViewItem4/>
-      </LoadingRotateView>
-    </LoadingView>}
-  </ButtonRotate>
-}
-export function LoadingButtonIcon(){
-  return <LoadingRotateView>
     <LoadingRotateViewItem1/>
     <LoadingRotateViewItem2/>
     <LoadingRotateViewItem3/>
     <LoadingRotateViewItem4/>
   </LoadingRotateView>
 }
+interface LoadingType {
+  width?:number,
+  position?:boolean
+}
+export function LoadingCircle({width=20,position=false}:LoadingType){
+  return <div className="loadingCircle" style={{
+    width:width,
+    height:width,
+    position:position ? 'absolute' : 'relative'
+  }}/>
+}
+export function LoadingCircleBg({width=20,position=false}:LoadingType){
+  return <div className="loadingCirclebg" style={{
+    width:width,
+    height:width,
+    position:position ? 'absolute' : 'relative'
+  }}/>
+}
+export function LoadingSignal({width=20,position=false}:LoadingType){
+  return <div className="loadingSignal" style={{
+    position:position ? 'absolute' : 'relative'
+  }}/>
+}
+
+export function LoadingLottieDots(){
+  return <Lottie options={{
+    loop: true,
+    autoplay: true,
+    animationData:LoadingJson,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  }} style={{width:100,height:100}}/>
+}
+
+
+

@@ -9,6 +9,7 @@ import { ApprovalState, formatAccount } from '@/Common'
 import { TransLoadingConfirm, TransLoadingError, TransLoadingPending, TransLoadingSuccess } from '@/Components/TransactionLoading'
 import { changeThem } from '@/Redux/setting'
 import { useDispatch } from 'react-redux'
+import { LoadingCircle, LoadingCircleBg, LoadingLottieDots, LoadingSignal } from '@/Components/LoadingButton'
 export default function HomePage() {
   const { open, close } = useWeb3Modal()
   const {address} = useAccount()
@@ -53,6 +54,14 @@ export default function HomePage() {
       <h2 style={{color:'#000'}}>Yay! Welcome to umi!</h2>
       <button className='button' onClick={onClick}>{address || '链接钱包'}</button>
       <button className='button' onClick={onMint}>调用合约方法</button>
+
+
+      <LoadingCircle/>
+      <LoadingCircleBg/>
+      <div style={{height:100}}>
+        <LoadingSignal/>
+      </div>
+      <LoadingLottieDots/>
 
     </div>
   );
