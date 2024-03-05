@@ -1,6 +1,26 @@
 `yarn add @apollo/client @emailjs/browser @multiavatar/multiavatar @reduxjs/toolkit @sentry/react @types/lodash lodash @types/numeral numeral @types/react-lottie react-lottie animate.css bignumber.js copy-to-clipboard dayjs echarts events framer-motion graphql language-translate  react-countdown react-device-detect rc-texty rc-tween-one react-fast-marquee react-height react-loader-spinner react-photo-view react-redux react-reveal react-spring react-toastify react-use redux-persist swiper use-media @web3modal/wagmi wagmi viem @tanstack/react-query`
 
 
+# 整屏布局
+```
+const [windowHeight,setWindowHeight] = useState(0)
+useEffect(()=>{
+  calculateWindowHeight()
+  window.addEventListener('resize',(res:any)=>{
+    calculateWindowHeight()
+  })
+  return ()=>{
+    window.removeEventListener('resize',()=>{})
+  }
+},[])
+function calculateWindowHeight(){
+  const wh = Math.max(window.innerHeight,600)
+  setWindowHeight(wh)
+}
+return <div className='mainView' style={{minHeight:windowHeight}}>
+<div/>
+```
+
 # 项目中使用的色值
 所有颜色定义在 `@/Common/colors.less`中
 ```
