@@ -640,6 +640,19 @@ const variants = {
 }
 ```
 
+# AOS div将要显示到页面上时的动画
+https://github.com/michalsnik/aos?tab=readme-ov-file
+```
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+AOS.init();
+
+<div data-aos="fade-in"></div>
+
+```
+
+
+
 # 根据图片获取 blurDataURL
 https://blurred.dev/
 

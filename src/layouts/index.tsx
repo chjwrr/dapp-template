@@ -3,10 +3,11 @@ import 'animate.css'
 import 'react-photo-view/dist/react-photo-view.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@/Common/common.less'
+import 'aos/dist/aos.css';
 import { ToastInit } from '@/Components/Toast';
 import { TransactionLoadingInit } from '@/Components/TransactionLoading';
 import ProviderConfig from '@/provider';
-
+import AOS from 'aos';
 
 // import * as Sentry from "@sentry/react";
 
@@ -32,7 +33,7 @@ import ProviderConfig from '@/provider';
 
 ToastInit()
 TransactionLoadingInit()
-
+AOS.init();
 
 export default function Layout() {
   return (
