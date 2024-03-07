@@ -65,7 +65,6 @@ export default function HomePage() {
 
       <div className='fadeUp' data-aos='fade-up'></div>
       <div className='fadeUp' data-aos='fade-up'></div>
-
     </div>
   );
 }

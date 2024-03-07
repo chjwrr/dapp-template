@@ -641,6 +641,7 @@ const variants = {
 ```
 
 # AOS div将要显示到页面上时的动画
+https://michalsnik.github.io/aos/
 https://github.com/michalsnik/aos?tab=readme-ov-file
 ```
 import AOS from 'aos';
