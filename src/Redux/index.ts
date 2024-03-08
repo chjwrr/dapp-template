@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import settingReducer from './setting'
+import signMsgReducer from './signMsg'
+
 import { combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 
@@ -31,6 +33,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
   setting:settingReducer,
+  signMsg:signMsgReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
