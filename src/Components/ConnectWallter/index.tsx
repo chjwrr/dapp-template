@@ -1,16 +1,13 @@
-import styles from './styles.less'
+import './index.less'
 import commonStyles from '../../Common/common.less'
 import { formatAccount } from '@/Common';
 import useTranslationLanguage from '@/hooks/useTranslationLanguage';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { connect,disconnect } from '@wagmi/core'
-import { bsc } from 'viem/chains';
 import { useAccount } from 'wagmi';
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
-import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { SafeConnector } from 'wagmi/connectors/safe'
+
+import { coinbaseWallet, injected, safe, walletConnect } from 'wagmi/connectors'
+import { projectId, wagmiConfig } from '@/provider/Web3ModalProvider';
 
 
 export default function ConnectWallet() {
@@ -18,41 +15,48 @@ export default function ConnectWallet() {
   const {address} = useAccount()
   function onConnect(){
     open && open()
-    // 切换链
-    // open({view: 'Account' | 'Connect' | 'Networks'})
   }
   async function onCustomWallet(){
-    const connectInfo = await connect({
-      connector:new InjectedConnector({
-        chains: [bsc],
-        options:{}
-      })
+    const connectInfo = await connect(wagmiConfig,{
+      connector:injected({})
     })
+
     console.log('链接钱包成功',connectInfo)
-    // 重要，不使用open方法链接钱包的，刷新后不会自动连接，需加上这句话
-    localStorage.setItem('wagmi.injected.shimDisconnect', "1")
   }
   async function onMetamask(){
-    const connectInfo = await connect({
-      connector:new MetaMaskConnector({
-        chains: [bsc],
-        options:{}
-      })
+    const connectInfo = await connect(wagmiConfig,{
+      connector:injected({ target: 'metaMask' }) 
     })
     console.log('链接钱包成功',connectInfo)
     // 重要，不使用open方法链接钱包的，刷新后不会自动连接，需加上这句话
-    localStorage.setItem('wagmi.injected.shimDisconnect', "1")
+    // localStorage.setItem('wagmi.injected.shimDisconnect', "1")
   }
+  async function onCoinbaseWallet(){
+    const connectInfo = await connect(wagmiConfig,{
+      connector:coinbaseWallet({
+        appName:''
+      })
+    })
 
-  /**
-   *  const {open} = useWeb3Modal()
-      const {switchNetwork} = useSwitchNetwork()
-      切换网络  switchNetwork（chain.id）
-   */
+    console.log('链接钱包成功',connectInfo)
+  }
+  async function onWalletConnect(){
+    const connectInfo = await connect(wagmiConfig,{
+      connector:walletConnect({
+        projectId:projectId
+      })
+    })
 
+    console.log('链接钱包成功',connectInfo)
+  }
   const {t} = useTranslationLanguage()
-  return <div className={`${commonStyles.row} ${styles.walletView}`} onClick={onConnect}>
-    <img className={styles.walletIcon} src='/images/walleticon.png'/>
-    <span className={styles.address}>{address ? formatAccount(address) : 'Connect Wallet'}</span>
+  return <div className={`${commonStyles.row} walletView`}>
+    <img className='walletIcon' src='/images/walleticon.png'/>
+    <span className='address'>{address ? formatAccount(address) : 'Connect Wallet'}</span>
+
+    <button onClick={onMetamask}>Metamask</button>
+    <button onClick={onCoinbaseWallet}>CoinbaseWallet</button>
+    <button onClick={onWalletConnect}>WalletConnect</button>
+
   </div>
 }

@@ -1,5 +1,4 @@
-`yarn add @apollo/client @emailjs/browser @multiavatar/multiavatar @reduxjs/toolkit @sentry/react @types/lodash lodash @types/numeral numeral @types/react-lottie react-lottie animate.css bignumber.js copy-to-clipboard dayjs echarts events framer-motion graphql language-translate  react-countdown react-device-detect rc-texty rc-tween-one react-fast-marquee react-height react-loader-spinner react-photo-view react-redux react-reveal react-spring react-toastify react-use redux-persist swiper use-media @web3modal/wagmi wagmi viem @tanstack/react-query`
-
+`yarn add @apollo/client @emailjs/browser @multiavatar/multiavatar @reduxjs/toolkit @sentry/react @types/lodash lodash @types/numeral numeral @types/react-lottie react-lottie animate.css bignumber.js copy-to-clipboard dayjs echarts events framer-motion graphql language-translate  react-countdown react-device-detect rc-texty rc-tween-one react-fast-marquee react-height react-loader-spinner react-photo-view react-redux react-reveal react-spring react-toastify react-use redux-persist swiper use-media @web3modal/wagmi wagmi viem @tanstack/react-query crypto-js @types/crypto-js`
 
 # 整屏布局
 ```

@@ -12,6 +12,7 @@ export interface ContractInterface {
 }
 
 
+/**************************** TOKEN **************************************/
 
 export const TEST_TOKEN:ContractInterface = {
   abi:ERC20_ABI,
@@ -29,6 +30,11 @@ export const USDT_TOKEN:ContractInterface = {
   }
 };
 
+
+
+
+
+/**************************** CONTRACT **************************************/
 
 export const TEST_CONTRACT:ContractInterface = {
   abi:TestContact_ABI,

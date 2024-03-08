@@ -5,7 +5,7 @@ import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
 import { WagmiProvider } from 'wagmi'
 
 // 1. Get projectId at https://cloud.walletconnect.com
-const projectId = '5bad4b7459c1bdcb4d4972a1227b03c2'
+export const projectId = '5bad4b7459c1bdcb4d4972a1227b03c2'
 
 // 2. Create wagmiConfig
 const metadata = {
@@ -16,7 +16,7 @@ const metadata = {
 }
 
 const chains = [bscTestnet] as const
-const wagmiConfig = defaultWagmiConfig({
+export const wagmiConfig = defaultWagmiConfig({
   chains, // required
   projectId, // required
   metadata, // required

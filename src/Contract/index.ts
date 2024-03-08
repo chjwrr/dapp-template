@@ -26,6 +26,7 @@ export function useSendTransaction() {
   const {address} = useAccount()
   const successFun = useRef<any>()
   const errorFun = useRef<any>()
+  const canShowLoading = useRef<boolean>(true)
 
   const {writeContract,data:hash,error,isError} = useWriteContract()
   const {isLoading,isSuccess,isError:waitIsError,error:waitError} = useWaitForTransactionReceipt({
@@ -33,18 +34,22 @@ export function useSendTransaction() {
   })
 
   useEffect(()=>{
-    if (isError){
+    if (isError && canShowLoading.current){
       TransLoadingError(getContractErrorMsg(error),'',chainID)
       errorFun.current && errorFun.current(error)
       console.log('error===',error)
+
+      canShowLoading.current = false
     }
   },[isError])
 
   useEffect(()=>{
-    if (waitIsError){
+    if (waitIsError && canShowLoading.current){
       TransLoadingError(getContractErrorMsg(waitError),hash || '',chainID)
       errorFun.current && errorFun.current(waitError)
       console.log('waitError===',waitError,hash)
+
+      canShowLoading.current = false
     }
   },[waitIsError])
 
@@ -55,10 +60,12 @@ export function useSendTransaction() {
   },[isLoading])
 
   useEffect(()=>{
-    if (isSuccess){
+    if (isSuccess && canShowLoading.current){
       TransLoadingSuccess(hash || '', chainID)
       successFun.current && successFun.current(hash)
       console.log('isSuccess===',hash)
+
+      canShowLoading.current = false
     }
   },[isSuccess])
 
@@ -78,6 +85,7 @@ export function useSendTransaction() {
         functionName:params.funcName
       }
       console.log('transParams',transParams)
+      canShowLoading.current = true
       writeContract(transParams)
     })
   }

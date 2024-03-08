@@ -1,7 +1,7 @@
 import ERC20_ABI from '@/ABI/ERC20.json';
 import { useQuery } from '@tanstack/react-query'
 import { ApprovalState, RefreshConfig, formatBalance, getContractErrorMsg } from '@/Common';
-import { useContext, useState, useEffect, useCallback } from 'react';
+import { useContext, useState, useEffect, useCallback, useRef } from 'react';
 import { AddressMap } from './../Contract/addresses';
 import { useAccount, useChainId, useReadContract, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import walletTokens from '@/Contract/walletTokens';
@@ -31,15 +31,19 @@ export function useApprove(tokenAddressMap: AddressMap, spenderAddressMap: Addre
   const {writeContract,writeContractAsync,data:hash,error,isError} = useWriteContract()
   const {isLoading,isPending,isSuccess,isError:waitIsError,data:waitData,error:waitError} = useWaitForTransactionReceipt({hash})
 
+  const canShowLoading = useRef<boolean>(true)
+
   useEffect(()=>{
-    if (isError){
+    if (isError && canShowLoading.current){
       TransLoadingError(getContractErrorMsg(error),'',chainID)
+      canShowLoading.current = false
     }
   },[isError])
 
   useEffect(()=>{
-    if (waitIsError){
+    if (waitIsError && canShowLoading.current){
       TransLoadingError(getContractErrorMsg(waitError),hash || '',chainID)
+      canShowLoading.current = false
     }
   },[waitIsError])
 
@@ -50,10 +54,11 @@ export function useApprove(tokenAddressMap: AddressMap, spenderAddressMap: Addre
   },[isLoading])
 
   useEffect(()=>{
-    if (isSuccess){
+    if (isSuccess && canShowLoading.current){
       TransLoadingSuccess(hash || '', chainID)
       refetch()
       approveSuccess && approveSuccess()
+      canShowLoading.current = false
     }
   },[isSuccess])
   useEffect(() => {
@@ -92,6 +97,7 @@ export function useApprove(tokenAddressMap: AddressMap, spenderAddressMap: Addre
       functionName:'approve'
     }
     console.log('transParams',transParams)
+    canShowLoading.current = true
     writeContract(transParams)
   }, [approvalState, tokenAddressMap, spenderAddressMap, cost]);
   return [approvalState, approve];
