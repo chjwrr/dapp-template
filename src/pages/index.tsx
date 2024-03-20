@@ -10,6 +10,8 @@ import { TransLoadingConfirm, TransLoadingError, TransLoadingPending, TransLoadi
 import { changeThem } from '@/Redux/setting'
 import { useDispatch } from 'react-redux'
 import { LoadingCircle, LoadingCircleBg, LoadingLottieDots, LoadingSignal } from '@/Components/LoadingButton'
+import { animate, useAnimate, useAnimation, useInView } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 export default function HomePage() {
   const { open, close } = useWeb3Modal()
   const {address} = useAccount()
@@ -49,6 +51,21 @@ export default function HomePage() {
       }
     })
   }
+
+
+  const controls = useAnimation();
+  
+  
+  const inViewRef = useRef(null)
+  const isInView = useInView(inViewRef,{once:true})
+
+  useEffect(()=>{
+    console.log('isInView===',isInView)
+    if (isInView){
+      //todo
+    }
+  },[isInView])
+
   return (
     <div>
       <h2 style={{color:'#000'}}>Yay! Welcome to umi!</h2>
@@ -65,6 +82,25 @@ export default function HomePage() {
 
       <div className='fadeUp' data-aos='fade-up'></div>
       <div className='fadeUp' data-aos='fade-up'></div>
+
+      <div ref={inViewRef} style={{
+        width:200,
+        height:200,
+        background:'blue',
+        marginTop:300
+      }}></div>
+
+        <div className="arrow" style={{background:'red',width:15, height:15 }}>
+          <svg width="15" height="15" viewBox="0 0 20 20">
+            <path d="M0 7 L 20 7 L 10 16" />
+          </svg>
+        </div>
+        <button onClick={()=>{
+          animate(".arrow", { rotate: 180, scale:3, x:100, width:30, height:30 }, { duration: 1 });
+        }}>点击执行动画1</button>
+        <button onClick={()=>{
+          animate(".arrow", { rotate: 0, scale:1.1, x:0, width:15, height:15 }, { duration: 1 });
+        }}>点击执行动画2</button>
     </div>
   );
 }

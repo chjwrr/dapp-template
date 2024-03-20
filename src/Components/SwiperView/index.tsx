@@ -5,8 +5,6 @@ import 'swiper/css/pagination'
 import 'swiper/css/effect-cards'
 
 import { useState, useRef } from 'react'
-import { isBrowser } from 'react-device-detect'
-import { autoWidthVW } from '@/Common'
 
 export const SwiperView = () => {
   // const [selectIndex,setSelectIndex] = useState(0)
@@ -29,7 +27,7 @@ export const SwiperView = () => {
   return (
     <Swiper
       initialSlide={0}
-      style={{ width: isBrowser ? autoWidthVW(600) : '100%' }}
+      style={{ width:'100%' }}
       modules={[Pagination, Autoplay, Navigation]}
       pagination={{
         clickable: true,

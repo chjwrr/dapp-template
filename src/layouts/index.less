@@ -76,6 +76,7 @@ SVGZ	  svg                     .svgz
 html,
 body,
 #root {
+  -webkit-overflow-scrolling:touch;
   color: black;
   font-size: 10px;
   background: #fff;
@@ -83,4 +84,20 @@ body,
 }
 .toastContent {
   font-size: 1.4rem;
+}
+
+input::-webkit-input-placeholder {
+  // color:skyblue;
+  // text-align: center;
+}
+input::-ms-input-placeholder {
+  // color:skyblue;
+  // text-align: center;
+}
+input::-moz-placeholder {
+  // color:skyblue;
+  // text-align: center
+}
+input::placeholder {
+
 }

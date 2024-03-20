@@ -4,6 +4,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@/Common/common.less'
 import 'aos/dist/aos.css';
+import 'react-tooltip/dist/react-tooltip.css'
 import { ToastInit } from '@/Components/Toast';
 import { TransactionLoadingInit } from '@/Components/TransactionLoading';
 import ProviderConfig from '@/provider';

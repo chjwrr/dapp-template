@@ -15,7 +15,7 @@ function Skeletons(props:SkeletonsProps){
 function SkeletonsImage(props:SkeletonsProps){
   return <div className={props.className} style={props.style}>
     <div className='skeletons'>
-      <img className='image' src={SkeletonsImageSVG}/>
+      {/* <img className='image' src={SkeletonsImageSVG}/> */}
     </div>
   </div>
 }
@@ -25,7 +25,7 @@ function SkeletonsText(props:SkeletonsProps){
     let item:any[] = []
     for (let index = 0; index < count; index++) {
       item.push(<div className={`skeletonsItem ${props.textClassName}`} key={'skeletonsItem' + index}
-        style={{width:index == count - 1 ? '70%' : '100%'}}>
+        style={{width:index == count - 1 ? '70%' : '90%'}}>
         <div className='skeletons'/>
       </div>)
     }

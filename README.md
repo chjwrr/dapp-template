@@ -1,4 +1,118 @@
-`yarn add @apollo/client @emailjs/browser @multiavatar/multiavatar @reduxjs/toolkit @sentry/react @types/lodash lodash @types/numeral numeral @types/react-lottie react-lottie animate.css bignumber.js copy-to-clipboard dayjs echarts events framer-motion graphql language-translate  react-countdown react-device-detect rc-texty rc-tween-one react-fast-marquee react-height react-loader-spinner react-photo-view react-redux react-reveal react-spring react-toastify react-use redux-persist swiper use-media @web3modal/wagmi wagmi viem @tanstack/react-query crypto-js @types/crypto-js`
+`yarn add @apollo/client @emailjs/browser @multiavatar/multiavatar @reduxjs/toolkit @sentry/react @types/lodash lodash @types/numeral numeral @types/react-lottie react-lottie animate.css bignumber.js copy-to-clipboard dayjs echarts events framer-motion graphql language-translate  react-countdown  rc-texty rc-tween-one react-fast-marquee react-height react-loader-spinner react-photo-view react-redux react-reveal react-spring react-toastify react-use redux-persist swiper use-media @web3modal/wagmi wagmi viem @tanstack/react-query crypto-js @types/crypto-js react-tooltip`
+
+
+# 集合
+```
+1.将鼠标悬停在一个 div 元素上，逐步改变表格的宽度从 100px 到 300px：
+div
+{
+  width:100px;
+  transition: width 2s;
+  -webkit-transition: width 2s; /* Safari */
+}
+div:hover {width:300px;}
+
+2.文本最多2行，超出省略号
+//word-break: break-all;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+overflow: hidden;
+
+
+3.设置滚动条样式
+.wrap {
+  margin: 0 auto;
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+}
+
+
+.wrap::-webkit-scrollbar {
+  /* 整体大小样式 */
+  width: 10px;
+  height: 10px;
+  }
+
+
+.wrap::-webkit-scrollbar-thumb {
+  /* 滚动条里的滑块 */
+  border-radius: 10px;
+  background-color: skyblue;
+  background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,0.2) 25%,
+  transparent 25%,
+  transparent 50%,
+  rgba(255,255,255,0.2) 55%,
+  rgba(255,255,255,0.2) 75%,
+  transparent 75%,
+  transparent);
+}
+
+
+.test::-webkit-scrollbar-track {
+/* 滚动条的轨道 */
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: #ededed;
+  border-radius: 10px;
+}
+
+4. 绘制三角形
+div {
+  width:0;
+  height:0;
+  border-width: 0 40px 40px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0,0,0,0.3);
+}
+
+5. 禁止用户选中元素
+.wrap {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+6. 
+```
+
+# react-countup 数字从  0 - 100
+```
+<CountUp className='numberValue' end={100} duration={3} />
+
+```
+
+# react-tooltip
+```
+import 'react-tooltip/dist/react-tooltip.css'
+
+
+import { Tooltip } from 'react-tooltip'
+
+<img id='farmQues'/>
+<Tooltip anchorSelect="#farmQues" place="top" clickable
+  style={{ backgroundColor: "#00000080"}}>
+  <div className='earnframTip'>hello world</div>
+</Tooltip>
+```
+
+# 视频
+```
+<video 
+  className='video'
+  loop
+  muted
+  preload={"auto"}
+  autoPlay
+  playsInline
+  src={'/media/homevideo.mp4'}/>
+.video {
+  mix-blend-mode: screen;
+  width: 100%;
+}
+```
 
 # 整屏布局
 ```
@@ -563,9 +677,6 @@ import TextyAnim from 'rc-texty'
 <TextyAnim>text</TextyAnim>
 
 ```
-# 数字从x 到 y 动画显示
-`https://motion.ant.design/components/tween-one#components-tween-one-demo-children`
-
 
 # framer-motion 动画库
 ```
@@ -638,6 +749,36 @@ const variants = {
   margin: 50px 0;
 }
 ```
+### useInView 判断组件刚进入页面
+```
+import { animate, useAnimate, useAnimation, useInView } from 'framer-motion'
+
+const inViewRef = useRef(null)
+const isInView = useInView(inViewRef,{once:true})
+
+useEffect(()=>{
+  console.log('isInView===',isInView)
+  if (isInView){
+    //todo
+  }
+},[isInView])
+<div ref={inViewRef} style={{
+  width:200,
+  height:200,
+  background:'blue',
+  marginTop:300
+}}></div>
+```
+
+### 点击按钮执行动画
+```
+import { animate } from 'framer-motion'
+<div className="arrow" style={{background:'red',width:15, height:15 }}/>
+
+animate(".arrow", { rotate: 180, scale:3, x:100, width:30, height:30 }, { duration: 1 });
+
+```
+
 
 # AOS div将要显示到页面上时的动画
 https://michalsnik.github.io/aos/
