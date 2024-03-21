@@ -20,7 +20,7 @@ export enum ChainID {
   BSC = 56,
   BSC_TESTNET=97,
   MATCH = 9001,
-  MATCH_TESTNET = 9001,
+  MATCH_TESTNET = 698,
   CC = 1331,
 }
 
