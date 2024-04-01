@@ -1,5 +1,6 @@
 import * as echarts from 'echarts';
 import { useEffect, useRef } from 'react';
+import './index.less'
 
 export default function CustomEcharts(){
   const myChart = useRef<any>()

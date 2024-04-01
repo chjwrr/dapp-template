@@ -75,7 +75,78 @@ div {
   user-select: none;
 }
 
-6. 
+6.图片旋转动画
+.lanArrow {
+  width:1.6rem;
+  height:1.6rem;
+}
+.lanArrowRotate {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transition: transform .25s;
+}
+.lanArrowReset {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transition: transform .25s;
+}
+7. 高度从0-100动画
+
+.lanShowView {
+  width:17rem;
+  height: 0;
+  position: absolute;
+  z-index: 5;
+  top:5.6rem;
+  left:0;
+  overflow: hidden;
+  background: @pageBgColor;
+}
+.lanShowViewShow {
+  height: 15.8rem;
+  transition: height .25s;
+}
+.lanShowViewHidden {
+  height: 0;
+  transition: height .25s;
+}
+
+8.多语言配置
+多语言按照页面进行分类，key写成 比如
+{
+  home:{
+    title:'', // t('home.title')
+    detail:{
+      title:'' // t('home.detail.title')
+    }
+  },
+  assets:{
+    title:'' // // t('assets.title')
+  }
+}
+
+```
+
+# 粘性布局
+stickymate.js
+```
+footer {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  height: 50px;
+  padding: 5px 0;
+  z-index: -1;
+}
+
+
+
+
+
+
+
+
+
 ```
 
 # react-countup 数字从  0 - 100
@@ -402,9 +473,10 @@ const { loading, error, data, refetch } = useApolloQuery(GRAPH_XXX,{
 
 ```
 
-# 点击放大图片
+# 点击放大图片浏览
 ```
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 export default function MyComponent() {
   return (
@@ -585,6 +657,12 @@ const unwatch = publicClient.watchContractEvent({
   eventName: 'Transfer',
   onLogs: logs => console.log(logs)
 })
+
+```
+
+# 获取某个合约地址的原生币的余额
+```
+const burnable = await provider.getBalance(ZZF_CONTRACT_ADDRESSSES[chain.id])
 
 ```
 
@@ -792,6 +870,17 @@ AOS.init();
 
 ```
 
+# 图表 echarts
+```
+https://echarts.apache.org/examples/zh/index.html
+```
+
+# 图片浏览 swiper
+https://swiperjs.com/demos
+
+# 图片浏览切换 react-awesome-slider
+https://github.com/rcaferati/react-awesome-slider
+https://fullpage.caferati.me/page-three  效果展示
 
 
 # 根据图片获取 blurDataURL

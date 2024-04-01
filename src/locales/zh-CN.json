@@ -1,3 +1,12 @@
 {
-  "welcome": "欢迎光临 Umi 的世界！"
+  "welcome": "欢迎光临 Umi 的世界！",
+  "home":{
+    "title":"6",
+    "detail":{
+      "title":"66"
+    }
+  },
+  "assets":{
+    "title":""
+  }
 }
